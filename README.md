@@ -7,8 +7,8 @@ Not affiliated with BTS or HYBE.
 
 | Student | Pages / files | Main work |
 |---|---|---|
-| Zhaksylyk Aruzhan | `index.html`, `join.html`, `js/home.js`, `js/join.js` | Hero with orbiting stars, countdown, counters, registration form with validation |
-| Maratov Ravil | `members.html`, `js/members.js`, `css/style.css` (shared theme) | Flip cards for 7 members, Bootstrap grid, shared colors and components |
+| Zhaksylyk Aruzhan | `members.html`, `js/members.js` | Flip cards for 7 members, Bootstrap grid|
+| Maratov Ravil | `index.html`, `join.html`, `js/home.js`, `js/join.js` `css/style.css` (shared theme) | Hero with orbiting stars, countdown, counters, registration form with validation, shared colors and components |
 | Neda Farhat | `discography.html`, `quiz.html`, `js/discography.js`, `js/quiz.js` | Table with search and filter, 5-question quiz |
 | Kabdyrakhmanova Zarina | `timeline.html`, `js/timeline.js` | Alternating timeline (Flexbox), scroll reveal, mobile layout |
 
