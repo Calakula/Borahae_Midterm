@@ -3,9 +3,6 @@
 Unofficial fan website for BTS and ARMY. Midterm project for **WEB Technologies 1 (Front End)**.
 Not affiliated with BTS or HYBE.
 
-- Repository: `PASTE GITHUB REPO URL`
-- Live site: `PASTE GITHUB PAGES URL`
-
 ## Team and pages
 
 | Student | Pages / files | Main work |
