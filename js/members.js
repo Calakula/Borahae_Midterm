@@ -1,12 +1,17 @@
-// Members page (Aruzhan): tap-to-flip for touch screens + keyboard support
-document.querySelectorAll('.flip').forEach(function (card) {
-  card.addEventListener('click', function () {
-    card.classList.toggle('flipped');
+// Страница участников: клик по карточке открывает модальное окно с подробностями.
+(function () {
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function () {
+    /* Участники: клик по карточке открывает модальное окно */
+    document.querySelectorAll('.member-flip').forEach(function (c) {
+      c.addEventListener('click', function () {
+        var d = c.dataset;
+        window.BorahaeModal.open({
+          image: d.photo, tag: 'Member ' + d.num, title: d.name,
+          rows: [['Role', d.role], ['Real name', d.real], ['Born', d.born], ['Position', d.pos], ['Known for', d.known]]
+        });
+      });
+    });
+
   });
-  card.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.classList.toggle('flipped');
-    }
-  });
-});
+})();
