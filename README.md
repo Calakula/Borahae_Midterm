@@ -1,30 +1,30 @@
 # Borahae — BTS Fan Site
 
-Unofficial fan website for BTS and ARMY. Midterm project for **WEB Technologies 1 (Front End)**.
+Unofficial fan website for BTS and ARMY. Endterm project for **WEB Technologies 1 (Front End)**.
 Not affiliated with BTS or HYBE.
 
-## Team and pages
+## Team and files
 
 | Student | Pages / files | Main work |
 |---|---|---|
-| Zhaksylyk Aruzhan | `members.html`, `js/members.js` | Flip cards for 7 members, Bootstrap grid|
-| Maratov Ravil | `index.html`, `join.html`, `js/home.js`, `js/join.js` `css/style.css` (shared theme) | Hero with orbiting stars, countdown, counters, registration form with validation, shared colors and components |
-| Neda Farhat | `discography.html`, `quiz.html`, `js/discography.js`, `js/quiz.js` | Table with search and filter, 5-question quiz |
-| Kabdyrakhmanova Zarina | `timeline.html`, `js/timeline.js` | Alternating timeline (Flexbox), scroll reveal, mobile layout |
+| Maratov Ravil | `index.html`, `join.html`, `css/style.css`, `js/main.js`, `js/home.js`, `js/join.js` | Shared theme (dark / light, saved in localStorage), mobile menu, smooth scroll, back-to-top, modal window; countdown, fact generator, confetti easter egg, music player; registration form with validation |
+| Zhaksylyk Aruzhan | `members.html`, `js/members.js` | Flip cards for 7 members, member details in a modal window |
+| Neda Farhat | `discography.html`, `quiz.html`, `js/discography.js`, `js/quiz.js` | 18 releases from a JS array, live search, 5 filters with animation, empty state, details modal; 5-question quiz with progress bar and score |
+| Kabdyrakhmanova Zarina | `timeline.html`, `js/timeline.js` | Alternating timeline, scroll reveal, story modal |
 
-## Course topics used
+## Structure
 
-- Semantic HTML: `header`, `nav`, `main`, `section`, `article`, `footer`, `fieldset`, `caption`
-- Form: `join.html` (text, email, select, number, radio, checkbox, textarea + validation)
-- Table: `discography.html`
-- Flexbox: navbar, timeline, filter buttons, footer, flip card faces
-- Grid: countdown boxes (`display: grid`) and the orbiting hero layout
-- Own media queries: `css/style.css` (bottom of the file)
-- Bootstrap 5.3: grid, navbar, collapse, table-responsive, forms, progress bar, utilities
+```
+index.html  members.html  discography.html  quiz.html  join.html  timeline.html
+css/style.css
+js/main.js  home.js  members.js  discography.js  quiz.js  join.js  timeline.js
+images/  fonts/  audio/
+```
 
 ## Credits
 
-- Fonts: Syne and DM Sans (Google Fonts)
-- Framework: Bootstrap 5.3 (CDN)
-- All visuals are made with CSS. No photos, logos or lyrics are used.
-- Page text and code drafted with AI assistance (Claude) and reviewed by the team.
+- Fonts: Syne and DM Sans (SIL Open Font License), stored in `/fonts`
+- Code and text drafted with AI assistance (Claude, Anthropic) and reviewed by the team
+- Photos and artwork of BTS: fan sources, used for this non-commercial educational project; all rights belong to their authors and HYBE
+- Quiz photo: Unsplash (Unsplash License)
+- Audio "My Universe": rights belong to Coldplay, BTS and the label
