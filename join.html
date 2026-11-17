@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Join — Borahae</title>
 <meta name="description" content="Borahae — unofficial BTS fan site made by ARMY">
+<script>try{var t=localStorage.getItem("borahae-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+<style>@layer bootstrap, base; @import url("css/vendor/bootstrap.min.css") layer(bootstrap);</style>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,23 +22,32 @@
 </nav>
 </header>
 <main>
-<div class="inner-page"><section class="page-head section-wrap"><p class="section-kicker"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5L12 3Z"/><path d="m5 15-.7 2.3L2 18l2.3.7L5 21l.7-2.3L8 18l-2.3-.7L5 15ZM19 13l-.7 2.3-2.3.7 2.3.7L19 19l.7-2.3 2.3-.7-2.3-.7L19 13Z"/></svg> Become part of ARMY</p><h1>Join the <span>fan club</span></h1><p>This is a demo form for our course project. Nothing is sent or stored anywhere.</p></section>
+<div class="inner-page"><section class="page-head section-wrap"><p class="section-kicker"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.5 4.5L6 9l4.5 1.5L12 15l1.5-4.5L18 9l-4.5-1.5L12 3Z"/><path d="m5 15-.7 2.3L2 18l2.3.7L5 21l.7-2.3L8 18l-2.3-.7L5 15ZM19 13l-.7 2.3-2.3.7 2.3.7L19 19l.7-2.3 2.3-.7-2.3-.7L19 13Z"/></svg> Become part of ARMY</p><h1>Join the <span>fan club</span></h1><p>This is a demo form for our course project. Nothing is sent to a server. Your card is saved only in this browser (localStorage).</p></section>
 <section class="join-wrap section-wrap">
 <form class="join-form" id="joinForm" novalidate>
-<div class="form-grid">
-<label data-field="name">Full name<input class="form-control" name="name" placeholder="Your name" autocomplete="name"><span class="field-error"></span></label>
-<label data-field="email">Email<input class="form-control" name="email" type="email" placeholder="you@example.com" autocomplete="email"><span class="field-error"></span></label>
-<label data-field="phone">Phone<input class="form-control" name="phone" type="tel" placeholder="+7 777 123 45 67" autocomplete="tel"><span class="field-error"></span></label>
-<label data-field="country">Country<select class="form-select" name="country"><option value="">Choose…</option><option>Kazakhstan</option><option>South Korea</option><option>Uzbekistan</option><option>Russia</option><option>Turkey</option><option>Other</option></select><span class="field-error"></span></label>
-<label data-field="year">Birth year<input class="form-control" name="year" type="number" placeholder="2005"><span class="field-error"></span></label>
+<div class="row g-3 form-row">
+<label class="col-md-6" data-field="name">Full name<input class="form-control" name="name" placeholder="Your name" autocomplete="name"><span class="field-error"></span></label>
+<label class="col-md-6" data-field="email">Email<input class="form-control" name="email" type="email" placeholder="you@example.com" autocomplete="email"><span class="field-error"></span></label>
+<label class="col-md-6" data-field="phone">Phone<input class="form-control" name="phone" type="tel" placeholder="+7 777 123 45 67" autocomplete="tel"><span class="field-error"></span></label>
+<label class="col-md-6" data-field="country">Country<select class="form-select" name="country"><option value="">Choose…</option><option>Kazakhstan</option><option>South Korea</option><option>Uzbekistan</option><option>Russia</option><option>Turkey</option><option>Other</option></select><span class="field-error"></span></label>
+<label class="col-md-6" data-field="year">Birth year<input class="form-control" name="year" type="number" placeholder="2005"><span class="field-error"></span></label>
 </div>
-<fieldset data-field="bias"><legend>Your bias (favorite member)</legend><div class="bias-grid"><label><input type="radio" name="bias" value="Jin"><span>Jin</span></label><label><input type="radio" name="bias" value="SUGA"><span>SUGA</span></label><label><input type="radio" name="bias" value="j-hope"><span>j-hope</span></label><label><input type="radio" name="bias" value="RM"><span>RM</span></label><label><input type="radio" name="bias" value="Jimin"><span>Jimin</span></label><label><input type="radio" name="bias" value="V"><span>V</span></label><label><input type="radio" name="bias" value="Jung Kook"><span>Jung Kook</span></label></div><span class="field-error"></span></fieldset>
+<fieldset data-field="bias"><legend>Your bias — pick one or more</legend><div class="bias-grid"><label><input type="checkbox" name="bias" value="Jin"><span>Jin</span></label><label><input type="checkbox" name="bias" value="SUGA"><span>SUGA</span></label><label><input type="checkbox" name="bias" value="j-hope"><span>j-hope</span></label><label><input type="checkbox" name="bias" value="RM"><span>RM</span></label><label><input type="checkbox" name="bias" value="Jimin"><span>Jimin</span></label><label><input type="checkbox" name="bias" value="V"><span>V</span></label><label><input type="checkbox" name="bias" value="Jung Kook"><span>Jung Kook</span></label></div><span class="field-error"></span></fieldset>
 <label>Why do you love BTS? <small>(optional)</small><textarea class="form-control" name="message" rows="3" maxlength="300" placeholder="Tell us in a few words…"></textarea></label>
 <div data-field="agree"><label class="agree-row"><input type="checkbox" name="agree"> <span>I understand this is an unofficial fan project.</span></label><span class="field-error"></span></div>
 <button class="button button-primary" type="submit">Get my ARMY card <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
 </form>
-<div class="army-card" id="armyResult" hidden role="status"><p class="section-kicker"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg> Welcome to ARMY</p><span class="card-watermark">7</span><h2></h2><p>Bias: <strong class="r-bias"></strong></p><p class="r-from"></p><button class="button button-secondary" id="fillAgain" type="button">Fill again</button></div>
-</section></div>
+<div class="army-card" id="armyResult" hidden role="status"><p class="section-kicker"><svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg> Welcome to ARMY</p><span class="card-watermark">7</span><h2></h2><p>Biases: <strong class="r-bias"></strong></p><p class="r-from"></p><button class="button button-secondary" id="fillAgain" type="button">Fill again</button></div>
+</section>
+<section class="join-wrap section-wrap" aria-labelledby="savedTitle">
+<div class="saved-panel" id="saved">
+<div class="saved-head"><div><p class="section-kicker">Saved in this browser</p><h2 id="savedTitle">My ARMY <span class="saved-total" id="savedTotal">0</span></h2></div><button class="button button-secondary" id="savedClear" type="button">Clear all</button></div>
+<p class="saved-note">Demo only: your saved items live in this browser (localStorage) and are never sent anywhere.</p>
+<div class="saved-stats" id="savedStats"></div>
+<p class="saved-quiz" id="savedQuiz"></p>
+<ul class="saved-list" id="savedList"></ul>
+<p class="saved-empty" id="savedEmpty">Nothing saved yet. Open a member or an album and press Save, or save a moment on the <a href="timeline.html">timeline</a>.</p>
+</div></section></div>
 </main>
 <footer>
 <div class="footer-wrap">
@@ -48,6 +58,6 @@
 <div class="footer-bottom">I purple you · 2025 Borahae fan project</div>
 </footer>
 </div>
-<script src="js/vendor/jquery-3.7.1.min.js"></script><script src="js/vendor/bootstrap.bundle.min.js"></script><script src="js/main.js"></script><script src="js/join.js"></script>
+<script src="js/vendor/jquery-3.7.1.min.js"></script><script src="js/vendor/bootstrap.bundle.min.js"></script><script src="js/main.js"></script><script src="js/saved.js"></script><script src="js/effects.js"></script><script src="js/join.js"></script>
 </body>
 </html>

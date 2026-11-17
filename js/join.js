@@ -11,9 +11,18 @@
     phone: function (v) { if (!v.trim()) return 'Please enter your phone number.'; if (!/^\+?[0-9\s()-]{10,16}$/.test(v.trim())) return 'Phone: 10–16 digits, e.g. +7 777 123 45 67.'; },
     country: function (v) { if (!v) return 'Please choose your country.'; },
     year: function (v) { if (!v) return 'Please enter your birth year.'; if (!/^\d{4}$/.test(v) || v < 1950 || v > 2020) return 'Birth year must be between 1950 and 2020.'; },
-    bias: function () { if (!form.querySelector('input[name=bias]:checked')) return 'Please pick your bias.'; },
+    bias: function () { if (!form.querySelector('input[name=bias]:checked')) return 'Please pick at least one bias.'; },
     agree: function () { if (!f.agree.checked) return 'Please confirm to continue.'; }
   };
+  var STORE = 'borahae-member';
+  function saveMember(d) { try { localStorage.setItem(STORE, JSON.stringify(d)); } catch (e) {} }
+  function loadMember() { try { return JSON.parse(localStorage.getItem(STORE)); } catch (e) { return null; } }
+  function clearMember() { try { localStorage.removeItem(STORE); } catch (e) {} }
+  function showCard(d) {
+    card.querySelector('h2').textContent = d.name;
+    card.querySelector('.r-bias').textContent = d.biases.join(', ');
+    card.querySelector('.r-from').textContent = 'From ' + d.country + ' · Member #' + d.id;
+  }
   function holder(n) { return form.querySelector('[data-field="' + n + '"]'); }
   function value(n) { return n === 'bias' || n === 'agree' ? '' : f[n].value; }
 
@@ -45,10 +54,10 @@
       return;
     }
     if (form.dataset.submitting === 'true') return;
-    var d = { name: f.name.value.trim(), bias: form.querySelector('input[name=bias]:checked').value, country: f.country.value };
-    card.querySelector('h2').textContent = d.name;
-    card.querySelector('.r-bias').textContent = d.bias;
-    card.querySelector('.r-from').textContent = 'From ' + d.country + ' · Member #' + Math.floor(10000 + Math.random() * 90000);
+    var picked = [].map.call(form.querySelectorAll('input[name=bias]:checked'), function (c) { return c.value; });
+    var d = { name: f.name.value.trim(), biases: picked, country: f.country.value, id: Math.floor(10000 + Math.random() * 90000) };
+    showCard(d);
+    saveMember(d);
     form.reset();
     form.dataset.submitting = 'true';
     if (window.jQuery) {
@@ -65,6 +74,7 @@
     }
   });
   document.getElementById('fillAgain').addEventListener('click', function () {
+    clearMember();
     if (window.jQuery) {
       var duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 220;
       window.jQuery(card).stop(true, true).fadeOut(duration, function () {
@@ -80,4 +90,12 @@
       form.dataset.submitting = 'false';
     }
   });
+
+  /* localStorage: if the visitor already registered, show their saved card */
+  var saved = loadMember();
+  if (saved && saved.name && Array.isArray(saved.biases)) {
+    showCard(saved);
+    form.hidden = true;
+    card.hidden = false;
+  }
 })();

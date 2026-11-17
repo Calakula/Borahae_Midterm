@@ -4,11 +4,17 @@
   'use strict';
   var root = document.documentElement, KEY = 'borahae-theme';
 
+  /* SVG-иконки (текстовые символы ☾ ☀ ↑ смещены внутри кнопки, SVG центрируется точно) */
+  var SVG_OPEN = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
+  var ICON_MOON = SVG_OPEN + '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>';
+  var ICON_SUN = SVG_OPEN + '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var ICON_UP = SVG_OPEN + '<path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>';
+
   /* ---------- Тема ---------- */
   function applyTheme(t) {
     root.setAttribute('data-theme', t);
     var b = document.getElementById('themeToggle');
-    if (b) { b.textContent = t === 'dark' ? '☾' : '☀'; b.setAttribute('aria-label', 'Switch theme (now ' + t + ')'); }
+    if (b) { b.innerHTML = t === 'dark' ? ICON_MOON : ICON_SUN; b.setAttribute('aria-label', 'Switch theme (now ' + t + ')'); }
   }
   var saved = 'dark';
   try { saved = localStorage.getItem(KEY) || 'dark'; } catch (e) {}
@@ -23,7 +29,7 @@
     open: function (o) {
       var c = modal.querySelector('#modalContent');
       c.innerHTML = '';
-      if (o.image) { var img = document.createElement('img'); img.src = o.image; img.alt = ''; c.appendChild(img); }
+      if (o.image) { var img = document.createElement('img'); img.src = o.image; img.alt = o.alt || ''; if (o.facePos) img.style.objectPosition = '50% ' + o.facePos + '%'; c.appendChild(img); }
       var body = document.createElement('div'); body.className = 'modal-body';
       var s = document.createElement('small'); s.textContent = o.tag || ''; body.appendChild(s);
       var h = document.createElement('h3'); h.textContent = o.title; body.appendChild(h);
@@ -32,7 +38,16 @@
         var dt = document.createElement('dt'), dd = document.createElement('dd');
         dt.textContent = r[0]; dd.textContent = r[1]; dl.appendChild(dt); dl.appendChild(dd);
       });
-      body.appendChild(dl); c.appendChild(body);
+      body.appendChild(dl);
+      if (o.save && window.BorahaeSaved) {
+        var sb = document.createElement('button');
+        sb.dataset.saveId = o.save.id; sb.dataset.saveType = o.save.type; sb.dataset.saveTitle = o.save.title;
+        sb.dataset.saveSub = o.save.sub || ''; sb.dataset.savePage = o.save.page || '';
+        var actions = document.createElement('div'); actions.className = 'modal-actions';
+        actions.appendChild(sb); body.appendChild(actions);
+        window.BorahaeSaved.bindButton(sb);
+      }
+      c.appendChild(body);
       lastFocus = document.activeElement;
       modal.classList.add('open'); document.body.style.overflow = 'hidden';
       modal.querySelector('.modal-close').focus();
@@ -109,6 +124,12 @@
     /* Плавный скролл + «Наверх» (защита от спама кликов) */
     var busy = false;
     function scrollToY(y) {
+      if (window.jQuery) {
+        // jQuery .animate(): плавная прокрутка; на время анимации отключаем CSS scroll-behavior, иначе они мешают друг другу
+        var $html = window.jQuery('html').css('scroll-behavior', 'auto');
+        window.jQuery('html, body').stop(true).animate({ scrollTop: y }, 550).promise().done(function () { $html.css('scroll-behavior', ''); });
+        return;
+      }
       if (busy) return; busy = true;
       window.scrollTo({ top: y, behavior: 'smooth' });
       setTimeout(function () { busy = false; }, 600);
@@ -121,7 +142,7 @@
       });
     });
     var top = document.createElement('button');
-    top.className = 'to-top'; top.setAttribute('aria-label', 'Back to top'); top.textContent = '↑';
+    top.className = 'to-top'; top.setAttribute('aria-label', 'Back to top'); top.innerHTML = ICON_UP;
     top.addEventListener('click', function () { scrollToY(0); });
     document.body.appendChild(top);
     window.addEventListener('scroll', function () { top.classList.toggle('show', window.scrollY > 400); }, { passive: true });
@@ -131,7 +152,8 @@
       c.addEventListener('click', function () {
         var d = c.dataset;
         window.BorahaeModal.open({
-          image: d.photo, tag: 'Member ' + d.num, title: d.name,
+          image: d.photo, alt: 'Photo of ' + d.name, facePos: d.face, tag: 'Member ' + d.num, title: d.name,
+          save: { id: 'member:' + d.name, type: 'member', title: d.name, sub: d.role, page: 'members.html' },
           rows: [['Role', d.role], ['Real name', d.real], ['Born', d.born], ['Position', d.pos], ['Known for', d.known]]
         });
       });
