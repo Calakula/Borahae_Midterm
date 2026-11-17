@@ -1947,3 +1947,123 @@ html,body{overflow-x:hidden}
 [data-theme="light"] .time-card strong,[data-theme="light"] .stats strong,[data-theme="light"] .album-table th,[data-theme="light"] .album-table td,[data-theme="light"] .quiz-options button,[data-theme="light"] .join-form label,[data-theme="light"] .join-form legend{color:#1d1237}
 [data-theme="light"] footer{color:#1d1237}
 [hidden]{display:none!important}
+
+/* ===================== ПРАВКИ v2 ===================== */
+/* Fixed navbar: body is pushed down by the header height */
+.site-header { position: fixed; top: 0; left: 0; right: 0; }
+body { padding-top: 76px; }
+@media (max-width: 640px) { body { padding-top: 68px; } }
+html { scroll-padding-top: 90px; }
+
+/* Perfectly centred icon buttons (theme + back to top) */
+.theme-toggle,
+.to-top {
+  display: grid;
+  place-items: center;
+  padding: 0;
+  line-height: 1;
+}
+.theme-toggle { flex: none; }
+.theme-toggle svg,
+.to-top svg { width: 20px; height: 20px; display: block; }
+
+/* Member modal photo: taller so the face fits (focal point is set from data-face in JS) */
+.modal-box img { height: 320px; object-position: 50% 15%; }
+
+/* Join form: multiple biases + dark/light text */
+.join-form ::placeholder { color: rgba(247, 242, 255, 0.42); opacity: 1; }
+.join-form input:-webkit-autofill { -webkit-text-fill-color: var(--text); }
+.bias-grid input:focus-visible + span { outline: 2px solid var(--violet); outline-offset: 2px; }
+.bias-grid span { transition: color .2s, border-color .2s, background .2s; }
+[data-theme="light"] .join-form ::placeholder { color: rgba(29, 18, 55, 0.45); }
+[data-theme="light"] .join-form input:not([type="radio"]):not([type="checkbox"]),
+[data-theme="light"] .join-form select,
+[data-theme="light"] .join-form textarea { color: #1d1237; border-color: rgba(90, 50, 160, 0.25); background: rgba(255, 255, 255, 0.7); }
+[data-theme="light"] .bias-grid span { color: #5d4f7a; background: rgba(255, 255, 255, 0.6); }
+[data-theme="light"] .bias-grid input:checked + span { color: #1d1237; }
+[data-theme="light"] .army-card, [data-theme="light"] .army-card p, [data-theme="light"] .army-card h2 { color: #1d1237; }
+
+/* ===================== ПРАВКИ v3: светлая тема без мигания ===================== */
+[data-theme="light"],
+[data-theme="light"] body { background: #f7f2ff; }
+[data-theme="light"] .hero-note { color: #1d1237; }
+[data-theme="light"] .hero-note small { color: #5d4f7a; }
+[data-theme="light"] .avatar-stack i { border-color: #f7f2ff; }
+[data-theme="light"] footer { background: rgba(255, 255, 255, 0.55); border-top-color: rgba(90, 50, 160, 0.18); }
+[data-theme="light"] .footer-brand small,
+[data-theme="light"] .footer-wrap > p { color: #5d4f7a; }
+[data-theme="light"] .footer-wrap > a { color: #4a2f8f; font-weight: 600; }
+[data-theme="light"] .footer-bottom { color: #5d4f7a; border-top-color: rgba(90, 50, 160, 0.15); }
+[data-theme="light"] .filter-row button { color: #5d4f7a; background: rgba(255, 255, 255, 0.6); }
+[data-theme="light"] .filter-row button:hover,
+[data-theme="light"] .filter-row button.active { color: #2a1260; }
+[data-theme="light"] .album-table tbody td span { color: #4a2a9a; background: rgba(155, 108, 255, 0.18); }
+[data-theme="light"] .fact-sign p { color: #1d1237; }
+[data-theme="light"] .search-box,
+[data-theme="light"] .search-box input { color: #1d1237; }
+
+/* "Forever with ARMY" / "A universe made together": the text block is the 2nd child (the heart button is last) */
+.hero-note > span:nth-child(2) { display: flex; flex-direction: column; font-size: 0.75rem; }
+
+/* Player card is always dark, so its song title stays white in every theme */
+.now-playing,
+.now-playing strong,
+[data-theme="light"] .now-playing,
+[data-theme="light"] .now-playing strong { color: #fff; }
+
+/* ===================== ПРАВКИ v4: My ARMY (сохранённое) ===================== */
+/* счётчик в навбаре */
+.nav-links .nav-saved { display: inline-flex; align-items: center; gap: 6px; padding: 10px 12px; }
+.nav-saved .icon { width: 18px; height: 18px; }
+.nav-saved b { min-width: 19px; height: 19px; padding: 0 5px; display: grid; place-items: center; border-radius: 10px; background: var(--pink); color: #1d1237; font-size: 0.7rem; font-weight: 800; line-height: 1; }
+.nav-saved.has-items .icon { color: var(--pink); fill: var(--pink); }
+
+/* кнопка Save */
+.save-btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, 0.06); color: var(--text); font-size: 0.78rem; font-weight: 700; transition: border-color .2s, box-shadow .2s, background .2s; }
+.save-btn .icon { width: 16px; height: 16px; }
+.save-btn:hover { border-color: var(--pink); box-shadow: 0 0 16px rgba(255, 133, 202, 0.3); }
+.save-btn:focus-visible, .saved-remove:focus-visible, .saved-view:focus-visible, .nav-saved:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+.save-btn[aria-pressed="true"] { border-color: var(--pink); background: rgba(255, 101, 189, 0.16); }
+.save-btn[aria-pressed="true"] .icon { color: var(--pink); fill: var(--pink); }
+.moment-card .save-btn { margin-top: 14px; }
+.modal-box .save-btn { color: #fff; }
+.modal-actions { margin-top: 20px; }
+
+/* панель на странице Join */
+.saved-panel { margin-top: 28px; padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--glass); backdrop-filter: blur(18px); color: var(--text); }
+.saved-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.saved-head h2 { display: flex; align-items: center; gap: 12px; font: 800 1.7rem var(--font-heading); letter-spacing: -0.04em; }
+.saved-total { min-width: 34px; height: 34px; padding: 0 10px; display: inline-grid; place-items: center; border-radius: 17px; background: linear-gradient(135deg, var(--violet), var(--pink)); color: #fff; font: 800 0.95rem var(--font-body); letter-spacing: 0; }
+.saved-note, .saved-quiz, .saved-empty { color: var(--muted); font-size: 0.8rem; line-height: 1.6; }
+.saved-quiz { margin-top: 12px; }
+.saved-quiz a, .saved-empty a { color: var(--pink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.saved-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.saved-stats:empty { display: none; }
+.saved-chip { padding: 5px 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(155, 108, 255, 0.14); font-size: 0.72rem; font-weight: 700; }
+.saved-list { list-style: none; display: grid; gap: 10px; margin-top: 16px; }
+.saved-item { display: flex; align-items: center; gap: 14px; padding: 13px 14px 13px 16px; border: 1px solid var(--line); border-radius: 14px; background: rgba(155, 108, 255, 0.08); }
+.saved-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.saved-text small { color: var(--pink); font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+.saved-text strong { font-size: 0.95rem; font-weight: 700; overflow-wrap: anywhere; }
+.saved-text span { color: var(--muted); font-size: 0.76rem; }
+.saved-view { color: var(--pink); font-size: 0.78rem; font-weight: 700; }
+.saved-view:hover { text-decoration: underline; }
+.saved-remove { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font-size: 0.85rem; transition: .2s; }
+.saved-remove:hover { color: #fff; border-color: #ff5d7a; background: rgba(255, 93, 122, 0.25); }
+.saved-empty { margin-top: 16px; padding: 18px; border: 1px dashed var(--line); border-radius: 14px; text-align: center; }
+.saved-panel .button:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+.quiz-best { margin-top: 10px; color: var(--muted); font-size: 0.85rem; }
+@media (max-width: 640px) { .saved-panel { padding: 22px 18px; } .saved-head h2 { font-size: 1.4rem; } }
+.quiz-result .quiz-best { text-transform: none; letter-spacing: 0; font-weight: 500; font-size: 0.85rem; color: var(--muted); }
+[data-theme="light"] .saved-head h2 .saved-total { background-image: linear-gradient(135deg, #7a52c9, #d3399b); -webkit-background-clip: border-box; background-clip: border-box; color: #fff; }
+
+/* ===================== ПРАВКИ v5 ===================== */
+/* уведомление (jQuery fadeIn / delay / fadeOut) */
+.toast-note { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 120; max-width: min(92vw, 420px); padding: 12px 20px; border: 1px solid rgba(255, 133, 202, 0.45); border-radius: 14px; background: rgba(24, 14, 48, 0.94); color: #fff; font-size: 0.85rem; font-weight: 600; text-align: center; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4); pointer-events: none; }
+
+/* форма Join на сетке Bootstrap (row / col-md-6) */
+.join-form .form-row > label { display: flex; flex-direction: column; gap: 8px; color: #d9cfe4; font-size: 0.76rem; font-weight: 600; }
+[data-theme="light"] .join-form .form-row > label { color: #1d1237; }
+/* gutters of the Bootstrap grid (g-3): the base reset layer wins over Bootstrap's own paddings, so they are set explicitly */
+.join-form .form-row { margin-inline: -9px; row-gap: 18px; }
+.join-form .form-row > * { padding-inline: 9px; }
