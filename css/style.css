@@ -2067,3 +2067,9 @@ html { scroll-padding-top: 90px; }
 /* gutters of the Bootstrap grid (g-3): the base reset layer wins over Bootstrap's own paddings, so they are set explicitly */
 .join-form .form-row { margin-inline: -9px; row-gap: 18px; }
 .join-form .form-row > * { padding-inline: 9px; }
+
+/* Light theme: текст поверх фото и тёмных карточек всегда светлый */
+[data-theme="light"] .member-front b,
+[data-theme="light"] .member-back b,
+[data-theme="light"] .era-card h3,
+[data-theme="light"] .quiz-visual strong { color: #fff; }
