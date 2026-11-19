@@ -4,7 +4,6 @@
 (function ($) {
   'use strict';
   if (!$) return;
-  // уважаем настройку «уменьшить движение» в системе
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) $.fx.off = true;
 
   var $toast = null;
@@ -12,7 +11,6 @@
     if (!$toast) {
       $toast = $('<div class="toast-note" role="status" aria-live="polite"></div>').appendTo(document.body).hide();
     }
-    // stop(true, true) — быстрые повторные клики не накапливают очередь анимаций
     $toast.stop(true, true).text(message).fadeIn(160).delay(1800).fadeOut(300);
   }
   window.BorahaeFx = { toast: toast };
